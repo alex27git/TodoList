@@ -15,7 +15,7 @@ function App() {
 
   const tasks_2: Array<TaskType> = [
     {id: 1, title: "Brad", isDone: true},
-    {id: 2, title: "Sugar", isDone: true},
+    {id: 2, title: "Sugar", isDone: false},
     {id: 3, title: "buckwheat", isDone: true},
   ]
 
