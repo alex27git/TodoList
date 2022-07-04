@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {FilterValuesType} from "./App";
 
 export type TaskType = {
-  id: number
+  id: string
   title: string
   isDone: boolean
 }
@@ -11,12 +11,17 @@ type TodoListPropsType = {
   
   title: string
   tasks: Array<TaskType>
-  removeTask: (taskID: number) => void
+  removeTask: (taskID: string) => void
   changeFilter: (filter: FilterValuesType) => void
+  addTask: (title: string) => void
 }
 
 const TodoList = (props:TodoListPropsType) => {
-  const tasksListItems = props.tasks.map(task =>{
+  console.log("TodoList")
+  
+  const [title, setTitle] = useState("")
+  
+  const tasksListItems = props.tasks.map(task => {
     const removeTask = () => {props.removeTask(task.id)}
     return (
       <li>
@@ -26,12 +31,30 @@ const TodoList = (props:TodoListPropsType) => {
       </li>
     )
   })
+  
+  const onClickAddTask = () => {
+    props.addTask(title)
+    setTitle("")
+  }
+  
+  const onKeyDownAddTaskHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" || e.key === "crtKey" ) {
+      onClickAddTask()
+    }
+  }
+  
+  const onChangeAddTaskHandler = (e: ChangeEvent<HTMLInputElement>) => setTitle(e.currentTarget.value)
+  
   return (
     <div>
       <h3>{props.title}</h3>
       <div>
-        <input/>
-        <button>+</button>
+        <input
+          value={title}
+          onChange={onChangeAddTaskHandler}
+          onKeyDown={onKeyDownAddTaskHandler}
+        />
+        <button onClick={onClickAddTask}>+</button>
       </div>
       <ul>
         {tasksListItems}
