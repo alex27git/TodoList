@@ -6,3 +6,22 @@
 .App > div {
   margin-right: 50px;
 }
+
+.isDone {
+  text-decoration: line-through;
+  color: #FFCCDD;
+  font-weight: bold;
+}
+
+.active {
+  background-color: chartreuse;
+  color: white;
+  font-weight: bold;
+  border: 2px solid chartreuse;
+  border-radius: 3px;
+}
+
+.error {
+  border: 2px solid #FFCCDD;
+  outline: none;
+}
