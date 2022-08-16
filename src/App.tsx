@@ -8,7 +8,7 @@ export type FilterValuesType = "all"|"active"|"completed"
 function App() {
   const title: string = "What to learn"
   // const title: string = "What to buy"
-  
+
   const [tasks, setTasks] = useState<Array<TaskType>>(
     [
       {id: v1(), title: "HTML", isDone: true},
